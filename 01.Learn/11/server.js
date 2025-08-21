@@ -4,7 +4,7 @@ const connectDB = require ('./src/config/database');
 const TaskRoutes = require ('./src/routes/TaskRoutes');
 const port = 3000;
 
-//use data
+//user data
 
 const user = {
     id: 123,
@@ -28,12 +28,12 @@ const validateToken = (() => {
 
 const app = express();
 
-connectDB (app);
+connectDB(app);
 
 app.use(express.json());
 
 app.get('/', (req, res) =>{
-    res.send('Ewlcome To Tasks API');
+    res.send('Welcome To Tasks API');
     validateToken();
 });
 
@@ -41,3 +41,5 @@ app.use('/api', TaskRoutes);
 
 
 app.listen(port, () => { console.log('Server is running');});
+
+//jwt.io para validar los token
