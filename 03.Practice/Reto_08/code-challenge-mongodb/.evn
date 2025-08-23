@@ -1,0 +1,5 @@
+# 🔗 URI de conexión a MongoDB local
+MONGO_URI=mongodb://localhost:27017/biblioteca
+
+# 🚪 Puerto en el que se ejecutará el servidor
+PORT=3000
