@@ -1,3 +1,5 @@
+// Controlador para retornar el perfil del usuario atenticado
+
 export const obtenerPerfil = (req, res) => {
   try {
     // El middleware verificarToken ya nos dio req.usuario
@@ -15,7 +17,9 @@ export const obtenerPerfil = (req, res) => {
         ultimoAcceso: new Date().toISOString(),
       },
     });
-  } catch (error) {
+  } 
+  catch (error) 
+  {
     console.error("Error obteniendo perfil:", error);
     res.status(500).json({
       success: false,

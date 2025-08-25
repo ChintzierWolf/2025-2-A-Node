@@ -1,3 +1,5 @@
+//Middleware para verificar TOKEN JWT en rutas protegidas
+
 import jwt from "jsonwebtoken";
 
 export const verificarToken = (req, res, next) => {
@@ -25,7 +27,7 @@ export const verificarToken = (req, res, next) => {
     // Verificar y decodificar token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Agregar información del usuario al request
+    // Agregar o adjuntar información del usuario al request
     req.usuario = decoded;
     next();
   } catch (error) {

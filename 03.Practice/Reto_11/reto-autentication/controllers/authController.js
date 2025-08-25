@@ -1,3 +1,5 @@
+// Este controlador maneja el login y la generación del TOKEN JWT
+
 import jwt from "jsonwebtoken";
 import fs from "fs/promises";
 import path from "path";
@@ -41,7 +43,7 @@ export const login = async (req, res) => {
       });
     }
 
-    // Generar token JWT
+    // Generar Payload para el token JWT
     const payload = {
       id: usuario.id,
       correo: usuario.correo,
@@ -49,11 +51,12 @@ export const login = async (req, res) => {
       rol: usuario.rol,
     };
 
+    // Firmar el TOKEN con la clave secreta
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN || "24h",
     });
 
-    // Respuesta exitosa
+    // Respuesta exitosa con TOKEN y datos de usuario
     res.json({
       success: true,
       message: "Login exitoso",
@@ -65,7 +68,9 @@ export const login = async (req, res) => {
         rol: usuario.rol,
       },
     });
-  } catch (error) {
+  } 
+  catch (error) 
+  {
     console.error("Error en login:", error);
     res.status(500).json({
       success: false,
