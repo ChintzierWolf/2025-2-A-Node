@@ -5,6 +5,7 @@ import dbConnection from './src/config/database.js';
 import logger from './src/middlewares/logger.js';
 import setupGlobalErrorHandlers from './src/middlewares/globalErrorHandler.js';
 import errorHandler from './src/middlewares/errorHandler.js'; // Importar errorHandler
+import chalk from 'chalk';
 
 dotenv.config();
 
@@ -37,5 +38,10 @@ app.use((req, res) => {
 app.use(errorHandler); // Captura errores lanzados por cualquier ruta o middleware
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server running on http://localhost:${process.env.PORT}`);
+  if (!process.env.PORT || !process.env.MONGO_URI) 
+  {
+    console.error('❌ Variables de entorno faltantes: PORT o MONGO_URI');
+    process.exit(1);
+  }
+  console.log(chalk.green(`Server running on http://localhost:${process.env.PORT}`));
 });

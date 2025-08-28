@@ -24,6 +24,7 @@ const orderSchema = new mongoose.Schema(
         price: {
           type: Number,
           required: true,
+          min: [0, 'El precio no puede ser negativo'],
         },
       },
     ],
@@ -44,11 +45,13 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: true,
       default: 0,
+      min: [0, 'El costo del envío no puede ser negativo'],
     },
     // 💰 Precio total del pedido (productos + envío)
     totalPrice: {
       type: Number,
       required: true,
+      min: [0, 'El precio total no puede ser negativo'],
     },
     // 📦 Estado del pedido
     status: {

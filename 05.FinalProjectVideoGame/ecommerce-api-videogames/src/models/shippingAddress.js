@@ -13,24 +13,24 @@ const shippingAddressSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    required: true,
+    required: [true,'La dirección del usuario es requerido'],
     trim: true,
   },
   city: {
     type: String,
-    required: true,
+    required: [true,'La ciudad de residencia es requerida'],
     trim: true,
   },
   state: {
     type: String,
-    required: true,
+    required: [true,'El estado de residencia es requerido'],
     trim: true,
   },
   postalCode: {
     type: String,
-    required: true,
-    min: 4,
-    max: 6,
+    required: [true,'El código postal es requerido'],
+    min: [4,'El número mínimo debe de ser 4'],
+    max: [6,'El número máximo debe de ser 6'],
     trim: true,
   },
   country: {

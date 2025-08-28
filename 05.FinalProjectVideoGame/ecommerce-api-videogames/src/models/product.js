@@ -7,6 +7,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: [true, 'El nombre del producto es obligatorio'],
       trim: true,
+      maxLength: [100, 'El nombre no puede superar los 100 caracteres'],
     },
 
     // 📝 Descripción breve del juego
@@ -14,6 +15,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: [true, 'La descripción es obligatoria'],
       trim: true,
+      maxLength: [100, 'El nombre no puede superar los 100 caracteres'],
     },
 
     // 💰 Precio del producto
@@ -44,6 +46,7 @@ const productSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Category',
       required: [true, 'La categoría es obligatoria'],
+      index: true,
     },
 
     // 🕹️ Plataforma del videojuego
@@ -51,6 +54,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       enum: ['PC', 'PlayStation', 'Xbox', 'Nintendo', 'Mobile'],
       required: [true, 'La plataforma es obligatoria'],
+      index: true,
     },
 
     // 🎭 Género del videojuego
@@ -80,6 +84,7 @@ const productSchema = new mongoose.Schema(
       default: 4.5,
       min: [1, 'La calificación mínima es 1'],
       max: [5, 'La calificación máxima es 5'],
+      set: val => Math.round(val * 10) / 10, // Redondeo a 1 decimal
     },
 
     // 🧮 Cantidad de reseñas recibidas

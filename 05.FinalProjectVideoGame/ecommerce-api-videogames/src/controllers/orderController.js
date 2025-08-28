@@ -240,7 +240,7 @@ async function updatePaymentStatus(req, res) {
     if (updatedOrder) {
       return res.status(200).json(updatedOrder);
     } else {
-      return res.status(404).json({ message: 'Order not found' });
+      return res.status(404).json({ message: 'Orden no encontrada' });
     }
   } catch (error) {
     errorHandler(error, req, res);
@@ -253,18 +253,18 @@ async function deleteOrder(req, res) {
 
     const order = await Order.findById(id);
     if (!order) {
-      return res.status(404).json({ message: 'Order not found' });
+      return res.status(404).json({ message: 'Orden no encontrada' });
     }
 
     // Solo permitir eliminar órdenes canceladas
     if (order.status !== 'cancelled') {
       return res.status(400).json({
-        message: 'Only cancelled orders can be deleted'
+        message: 'Solo se pueden eliminar ordenes canceladas'
       });
     }
 
     await Order.findByIdAndDelete(id);
-    res.status(204).send();
+    res.status(200).json({message: 'Orden eliminada exitosamente'});
   } catch (error) {
     res.status(500).json({ error });
   }

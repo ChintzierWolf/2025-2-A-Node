@@ -10,12 +10,21 @@ import productRoutes from './productRoutes.js';
 
 const router = express.Router();
 
+// 🧑‍💻 Autenticación y sesión
 router.use('/auth', authRoutes);
-router.use(cartRoutes);
-router.use(categoryRoutes);
-router.use(notificationRoutes);
-router.use(orderRoutes);
-router.use(paymentMethodRoutes);
-router.use(productRoutes);
+
+// 🛒 Carrito de compras
+router.use('/cart', cartRoutes);
+
+// 📦 Gestión de productos y categorías
+router.use('/products', productRoutes);
+router.use('/categories', categoryRoutes);
+
+// 📬 Notificaciones
+router.use('/notifications', notificationRoutes);
+
+// 📑 Pedidos y pagos
+router.use('/orders', orderRoutes);
+router.use('/payment-methods', paymentMethodRoutes);
 
 export default router;
