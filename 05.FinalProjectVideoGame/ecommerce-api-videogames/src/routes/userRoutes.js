@@ -69,7 +69,6 @@ router.get('/:userId', [
 ], validate, authMiddleware, isAdmin, getUserById);
 
 
-
 // Actualizar perfil del usuario
 router.put('/profile', profileValidations, validate, authMiddleware, updateUserProfile);
 

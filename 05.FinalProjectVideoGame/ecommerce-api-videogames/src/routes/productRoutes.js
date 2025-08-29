@@ -2,7 +2,7 @@ import express from 'express';
 
 import {
   getProducts,
-  getProductById,
+  getProductByCategory,
   createProduct,
   updateProduct,
   deleteProduct,
